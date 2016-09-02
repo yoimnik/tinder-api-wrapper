@@ -79,6 +79,6 @@ if matches:
 
         output.append(info + urls + "\n")
 
-    print "\n".join([info, photos])
+    print "\n".join(output)
 else:
     print "None."
