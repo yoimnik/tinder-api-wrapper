@@ -70,13 +70,15 @@ if matches:
         interests = []
         for interest in match['common_interests']:
             interests.append(interest)
-        info += ", ".join(interests)
+        info += ", ".join(interests) + "\n"
 
         photos = []
         for photo in match['photos']:
             photos.append(photo)
         urls = "\n".join(photos)
 
-        print "\n".join([info, photos])
+        output.append(info + urls + "\n")
+
+    print "\n".join([info, photos])
 else:
     print "None."
