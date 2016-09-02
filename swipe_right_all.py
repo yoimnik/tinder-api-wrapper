@@ -1,4 +1,5 @@
 from tinderclient import TinderClient
+import datetime
 import time
 
 
@@ -11,9 +12,8 @@ facebook_id = ''
 tinder = TinderClient(facebook_token, facebook_id)
 print "Logged in as " + tinder.full_name
 
-print "Swiping right on users within " + tinder.distance_filter + " miles..."
+print "Swiping right on users within " + `tinder.distance_filter` + " miles..."
 matches = []
-
 while True:
     nearby_users = tinder.nearby_users()
     if 'message' in nearby_users:
@@ -21,31 +21,62 @@ while True:
             print "Ran out of people to swipe."
             break
 
+    has_swipes = True
     for userItem in nearby_users['results']:
-        for user in userItem['user']:
-            swipe = tinder.swipe_right(user['_id'])
-            if swipe['match']:
-                photos = []
-                for photo in user['photos']:
-                    photos.append(photo['url'])
+        user = userItem['user']
 
-                common_interests = []
-                for interest in user['common_interests']:
-                    common_interests.append(interest['name'])
+        swipe = tinder.swipe_right(user['_id'])
+        if swipe['match']:
+            photos = []
+            for photo in user['photos']:
+                photos.append(photo['url'])
 
-                match = {
-                    'name': user['name'],
-                    'bio': user['bio'],
-                    'photos': photos,
-                    'common_interests': common_interests
-                }
-                matches.append(match)
+            common_interests = []
+            for interest in user['common_interests']:
+                common_interests.append(interest['name'])
 
-            if swipe['likes_remaining'] == 0:
-                print "Used all likes. Come back on " + time.strftime('%b %d at %l:%M%p')
-                break
+            match = {
+                'name': user['name'],
+                'bio': user['bio'],
+                'common_interests': common_interests,
+                'photos': photos
+            }
+            matches.append(match)
 
-            time.sleep(SWIPE_DELAY)
+        if swipe['likes_remaining'] == 0:
+            seconds = swipe['rate_limited_until'] / 1000.0
+            more_likes_time = datetime.datetime.fromtimestamp(seconds)
+            formatted_time = more_likes_time.strftime("%b %d at %l:%M%p")
+            print "Used all likes. Will have more on " + formatted_time + "."
+            has_swipes = False
+            break
 
-    time.sleep(GET_NEARBY_USERS_DELAY)
+        time.sleep(SWIPE_DELAY)
 
+    if not has_swipes:
+        break
+    else:
+        time.sleep(GET_NEARBY_USERS_DELAY)
+
+print "Matches:"
+if matches:
+    output = []
+    n = 1
+    for match in matches:
+        info = "Name: " + match['name'] + "\n" + \
+               "Bio: " + match['bio'] + "\n" + \
+               "Common Interests: "
+
+        interests = []
+        for interest in match['common_interests']:
+            interests.append(interest)
+        info += ", ".join(interests)
+
+        photos = []
+        for photo in match['photos']:
+            photos.append(photo)
+        urls = "\n".join(photos)
+
+        print "\n".join([info, photos])
+else:
+    print "None."
