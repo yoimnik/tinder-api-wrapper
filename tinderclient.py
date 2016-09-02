@@ -1,6 +1,7 @@
 import requests
 import json
 import datetime
+import sys
 
 
 class TinderClient:
@@ -14,8 +15,17 @@ class TinderClient:
             'locale': 'en'
         }
 
-        response = requests.post(self.api_url + '/auth', data=request)
-        self.api_token = json.loads(response.text)['token']
+        try:
+            response = requests.post(self.api_url + '/auth', data=request)
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            print e
+            sys.exit(1)
+
+        data = json.loads(response.text)
+        self.api_token = data['token']
+        self.full_name = data['user']['full_name']
+        self.distance_filter = data['user']['distance_filter']
 
 
     def popular_locations(self):
