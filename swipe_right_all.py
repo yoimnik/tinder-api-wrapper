@@ -78,7 +78,7 @@ if matches:
                "Common Connections: " + ', '.join(match['common_connections']) + "\n" + \
                "Common Interests: " + ', '.join(match['common_interests']) + "\n"
 
-        urls = "\n".join(photos)
+        urls = "\n".join(match['photos'])
 
         output.append(info + urls + "\n")
 
