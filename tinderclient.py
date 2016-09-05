@@ -73,14 +73,7 @@ class TinderClient:
 
     def _headers(self, post):
         headers = {
-            'platform': 'android',
             'X-Auth-Token': self.api_token,
-            'User-Agent': 'Tinder Android Version 5.3.4',
-            'os-version': 21,
-            'Accept-Language': 'en',
-            'app-version': 1625,
-            'Connection': 'Keep-Alive',
-            'Accept-Encoding': 'gzip'
         }
         if post:
             headers['Content-Type'] = 'application/json; charset=utf-8'
