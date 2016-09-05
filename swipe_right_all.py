@@ -27,18 +27,28 @@ while True:
 
         swipe = tinder.swipe_right(user['_id'])
         if swipe['match']:
-            photos = []
-            for photo in user['photos']:
-                photos.append(photo['url'])
+            schools = []
+            for school in user['schools']:
+                schools.append(school['name'])
 
             common_interests = []
             for interest in user['common_interests']:
                 common_interests.append(interest['name'])
 
+            common_connections = []
+            for connection in user['common_connections']:
+                common_connections.append(connection['name'])
+
+            photos = []
+            for photo in user['photos']:
+                photos.append(photo['url'])
+
             match = {
                 'name': user['name'],
                 'bio': user['bio'],
+                'schools': schools,
                 'common_interests': common_interests,
+                'common_connections': common_connections,
                 'photos': photos
             }
             matches.append(match)
@@ -61,20 +71,13 @@ while True:
 print "Matches:"
 if matches:
     output = []
-    n = 1
     for match in matches:
         info = "Name: " + match['name'] + "\n" + \
                "Bio: " + match['bio'] + "\n" + \
-               "Common Interests: "
+               "Schools: " + ', '.join(match['schools']) + "\n" + \
+               "Common Connections: " + ', '.join(match['common_connections']) + "\n" + \
+               "Common Interests: " + ', '.join(match['common_interests']) + "\n"
 
-        interests = []
-        for interest in match['common_interests']:
-            interests.append(interest)
-        info += ", ".join(interests) + "\n"
-
-        photos = []
-        for photo in match['photos']:
-            photos.append(photo)
         urls = "\n".join(photos)
 
         output.append(info + urls + "\n")
