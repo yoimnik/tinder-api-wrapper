@@ -27,7 +27,7 @@ On a side note, if you take a look at the response body of the `POST /auth` requ
 
 The functions in the wrapper return JSONs of the response bodies.
 
-`TinderClient(facebook_token, facebook_id)`
+#### `TinderClient(facebook_token, facebook_id)`
   * POST /auth
   * Initializes an instance by authenticating the user with the token and ID.
   * Exits if token and/or ID are incorrect, or for any 5xx error.
@@ -119,7 +119,7 @@ The functions in the wrapper return JSONs of the response bodies.
             'versions': {...}
         }
 
-`popular_locations()`
+#### `popular_locations()`
   * GET /location/popular
   * Returns the top 10 locations where Tinder is used from most to least.
 
@@ -150,7 +150,7 @@ The functions in the wrapper return JSONs of the response bodies.
             ]
         }
 
-`fetch_updates()`
+#### `fetch_updates()`
   * POST /updates
   * Returns any recent matches.
 
@@ -183,7 +183,7 @@ The functions in the wrapper return JSONs of the response bodies.
             'last_activity_date': 'ISO8601'
         }
 
-`profile_meta()`
+#### `profile_meta()`
   * GET /meta
   * Returns information about your profile.  
 
@@ -203,7 +203,7 @@ The functions in the wrapper return JSONs of the response bodies.
             'user': { (see POST /auth) }
         }
 
-`nearby_users()`
+#### `nearby_users()`
   * GET /user/recs
   * Returns nearby users based on your set distance. Note that this API call costs a lot of time (there seems to be some expensive calculation on the serverside to generate nearby users), so it is important that you sleep out calls to this if you are scripting.
 
@@ -262,12 +262,12 @@ The functions in the wrapper return JSONs of the response bodies.
             ]
         }
         
-`user_info(user_id)`
+#### `user_info(user_id)`
   * GET /user/{user_id}
   * Returns information on the user
   * Same JSON format as GET /user/recs `'user'` key.
 
-`swipe_right(user_id)`
+#### `swipe_right(user_id)`
   * POST /like/{user_id}
   * Likes the specified user.
   * When likes are remaining:
@@ -286,12 +286,12 @@ The functions in the wrapper return JSONs of the response bodies.
         }
 
 
-`swipe_left(user_id)`
+#### `swipe_left(user_id)`
   * GET /pass/{user_id}
   * Passes the specified user.
   * Response is status code.
 
-`super_like(user_id)`
+#### `super_like(user_id)`
   * POST /like/{user_id}/super
   * Super likes the specified user.
 
