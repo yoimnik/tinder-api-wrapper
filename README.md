@@ -31,7 +31,8 @@ The functions in the wrapper return JSONs of the response bodies.
   * POST /auth
   * Initializes an instance by authenticating the user with the token and ID.
   * Exits if token and/or ID are incorrect, or for any 5xx error.
-  *     {
+
+        {
             'token': '...',
             'globals': {...},
             'user': {
@@ -121,7 +122,8 @@ The functions in the wrapper return JSONs of the response bodies.
 `popular_locations()`
   * GET /location/popular
   * Returns the top 10 locations where Tinder is used from most to least.
-  *     {
+
+        {
             'status': 200,
             'results': [
                 {
@@ -151,7 +153,8 @@ The functions in the wrapper return JSONs of the response bodies.
 `fetch_updates()`
   * POST /updates
   * Returns any recent matches.
-  *     {
+
+        {
             'matches': [
                 {
                     '_id': 'MATCH_ID',
@@ -182,8 +185,9 @@ The functions in the wrapper return JSONs of the response bodies.
 
 `profile_meta()`
   * GET /meta
-  * Returns information about your profile.
-  *     {
+  * Returns information about your profile.  
+
+        {
             'status': 200,
             'rating': {
                 'rate_limited_until': MICROSOFT_DATE_FORMAT,
@@ -202,7 +206,8 @@ The functions in the wrapper return JSONs of the response bodies.
 `nearby_users()`
   * GET /user/recs
   * Returns nearby users based on your set distance. Note that this API call costs a lot of time (there seems to be some expensive calculation on the serverside to generate nearby users), so it is important that you sleep out calls to this if you are scripting.
-  *     {
+
+        {
             'status': 200,
             'results': [
                 {
@@ -271,6 +276,7 @@ The functions in the wrapper return JSONs of the response bodies.
             'match': BOOL,
             'likes_remaining': 100  // it will always be 100 while you have some
         }
+
   * When likes are depleted:
 
         {
@@ -278,6 +284,7 @@ The functions in the wrapper return JSONs of the response bodies.
             'likes_remaining': 0,
             'rate_limited_until': MICROSOFT_DATE_FORMAT
         }
+
 
 `swipe_left(user_id)`
   * GET /pass/{user_id}
@@ -287,7 +294,8 @@ The functions in the wrapper return JSONs of the response bodies.
 `super_like(user_id)`
   * POST /like/{user_id}/super
   * Super likes the specified user.
-  *     {
+
+        {
             'match': BOOL,
             'status': 200,
             'super_likes': {
