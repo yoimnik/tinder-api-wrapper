@@ -56,6 +56,11 @@ class TinderClient:
         return json.loads(response.text)
 
 
+    def user_info(self, user_id):
+        response = requests.get(self.api_url + '/user/' + user_id, headers=self._headers(False))
+        return json.loads(response.text)
+
+
     def swipe_right(self, user_id):
         response = requests.get(self.api_url + '/like/' + user_id, headers=self._headers(False))
         return json.loads(response.text)
