@@ -19,9 +19,9 @@ Once your mobile device is hooked up to the proxy, open up Tinder and a series o
         'facebook_id': facebook_id,
     }
 
-You will need your `facebook_token` whenever you want to initiate an instance of `TinderClient`. **Do not publicize your `facebook_token`.** With it, anyone can act as you on Tinder. If you ever release it and need to change it, the only alternative I know is to delete the app from your Facebook account (which will delete your Tinder bio/matches) and to sign up on Tinder with your Facebook account again.
+You will need your `facebook_token` whenever you want to initiate an instance of `TinderClient`. **Do not publicize your `facebook_token`!** With it, anyone can act as you on Tinder. If you ever release it and need to change it, the only alternative I know is to delete the app from your Facebook account (which will delete your Tinder bio/matches) and to sign up on Tinder with your Facebook account again.
 
-On a side note, if you take a look at the response body of the `POST /auth` request, you'll see a key called `X-Auth-Token`. The value of this is needed in all other HTTP request headers to the Tinder API. This token does expire after sometime, which is why the Facebook Token is needed get another authorized instance.
+On a side note, if you take a look at the response body of the `POST /auth` request, you'll see a key called `X-Auth-Token`. The value of this is needed in all other HTTP request headers to the Tinder API. This token does expire after sometime, which is why the Facebook Token is needed to get another authorized instance.
 
 ## TinderClient calls
 
