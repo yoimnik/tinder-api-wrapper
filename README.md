@@ -321,3 +321,7 @@ POST
         'X-Auth-Token': '...',
         'Content-Type': 'application/json; charset=utf-8'
     }
+
+### Examples
+
+Check out `swipe_right_all.py` for an example to quickly use `TinderClient`.
