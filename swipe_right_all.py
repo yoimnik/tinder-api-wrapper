@@ -22,9 +22,7 @@ while True:
             break
 
     has_swipes = True
-    for userItem in nearby_users['results']:
-        user = userItem['user']
-
+    for user in nearby_users['results']:
         swipe = tinder.swipe_right(user['_id'])
         if swipe['match']:
             schools = []
@@ -35,10 +33,6 @@ while True:
             for interest in user['common_interests']:
                 common_interests.append(interest['name'])
 
-            common_connections = []
-            for connection in user['common_connections']:
-                common_connections.append(connection['name'])
-
             photos = []
             for photo in user['photos']:
                 photos.append(photo['url'])
@@ -48,7 +42,6 @@ while True:
                 'bio': user['bio'],
                 'schools': schools,
                 'common_interests': common_interests,
-                'common_connections': common_connections,
                 'photos': photos
             }
             matches.append(match)
@@ -75,7 +68,6 @@ if matches:
         info = "Name: " + match['name'] + "\n" + \
                "Bio: " + match['bio'] + "\n" + \
                "Schools: " + ', '.join(match['schools']) + "\n" + \
-               "Common Connections: " + ', '.join(match['common_connections']) + "\n" + \
                "Common Interests: " + ', '.join(match['common_interests']) + "\n"
 
         urls = "\n".join(match['photos'])
