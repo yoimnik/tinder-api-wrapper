@@ -1,13 +1,11 @@
 from tinderclient import TinderClient
+from tinder_token import facebook_id, facebook_token
 import datetime
 import time
 
 
 SWIPE_DELAY = 0.25
 GET_NEARBY_USERS_DELAY = 5
-
-facebook_token = ''
-facebook_id = ''
 
 tinder = TinderClient(facebook_token, facebook_id)
 print "Logged in as " + tinder.full_name
