@@ -28,8 +28,9 @@ while True:
                 schools.append(school['name'])
 
             common_interests = []
-            for interest in user['common_interests']:
-                common_interests.append(interest['name'])
+            if 'common_interests' in user:
+                for interest in user['common_interests']:
+                    common_interests.append(interest['name'])
 
             photos = []
             for photo in user['photos']:
