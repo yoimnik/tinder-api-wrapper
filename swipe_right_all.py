@@ -19,7 +19,12 @@ while True:
             print "Ran out of people to swipe."
             break
 
+    if nearby_users['results'][0]['bio'] == 'You are out of likes today. Come back later to continue swiping on more people.':
+        print nearby_users['results'][0]['bio']
+        break
+
     has_swipes = True
+
     for user in nearby_users['results']:
         swipe = tinder.swipe_right(user['_id'])
         if swipe['match']:
