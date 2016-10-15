@@ -2,7 +2,7 @@
 
 I sniffed the private Tinder API by using a web debugging proxy and mocking user scenarios on the app. By viewing the web traffic from my mobile device on the proxy, I was able to see both the HTTP requests and responses for any user scenario.
 
-I wrapped the most relevant API calls in a python class `TinderClient`, which upon construction, authorizes an instance to use and make changes to your Tinder account.
+I wrapped the most relevant API calls in a python class `TinderClient`, which upon instantiation, authorizes an instance to use and make changes to your Tinder account.
 
 ## Sniffing your Facebook Token
 
