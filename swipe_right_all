@@ -1,0 +1,3 @@
+#!/usr/bin/env python
+# `chmod 744 swipe_right_all`
+import swipe_right_all
